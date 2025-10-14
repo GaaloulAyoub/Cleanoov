@@ -1,0 +1,65 @@
+---
+// src/components/Hero.astro
+const googleFormUrl = 'https://forms.gle/TON_LIEN_GOOGLE'; // <-- remplace TON_LIEN_GOOGLE
+---
+<section class="relative overflow-hidden">
+  <div class="max-w-6xl mx-auto px-6 py-16 md:py-28 flex flex-col md:flex-row items-center gap-10">
+    <!-- Texte -->
+    <div class="md:w-1/2">
+      <h1 class="text-3xl md:text-4xl font-extrabold leading-tight">
+        Cleanoov : L'Expert du Nettoyage Intelligent de vos Panneaux Solaires
+      </h1>
+
+      <p class="mt-4 text-lg text-gray-700">
+        Maximisez votre production d'énergie. Protégez votre investissement.
+      </p>
+
+      <p class="mt-4 text-base text-gray-600">
+        La saleté sur vos panneaux peut réduire votre production jusqu'à 30%. Ce n'est pas juste une question de propreté, c'est une question de performance et de rentabilité. Nous apportons la solution.
+      </p>
+
+      <div class="mt-6 flex gap-4">
+        <a href={googleFormUrl} target="_blank" rel="noopener" class="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white font-semibold px-5 py-3 rounded shadow">
+          Demander un devis gratuit
+        </a>
+
+        <a href="#solution" class="inline-flex items-center gap-2 border border-gray-300 px-4 py-3 rounded text-sm">
+          En savoir plus
+        </a>
+      </div>
+
+      <!-- Valeurs highlight mobile -->
+      <div class="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div class="p-4 bg-black text-white rounded">
+          <div class="text-2xl">🔄</div>
+          <div class="mt-2 text-sm font-semibold">Innovation Tunisienne</div>
+        </div>
+        <div class="p-4 border rounded">
+          <div class="text-2xl">📈</div>
+          <div class="mt-2 text-sm font-semibold">Gain de Performance</div>
+        </div>
+        <div class="p-4 border rounded">
+          <div class="text-2xl">🛡️</div>
+          <div class="mt-2 text-sm font-semibold">Protection & Durabilité</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Vidéo -->
+    <div class="md:w-1/2">
+      <div class="rounded-lg overflow-hidden shadow-lg border">
+        <video
+          src="/hero-video.mp4"
+          controls
+          playsinline
+          preload="metadata"
+          poster="/before.jpg"
+          class="w-full h-auto block"
+          aria-label="Vidéo démonstrative du nettoyage Cleanoov"
+        >
+          Ton navigateur ne supporte pas la lecture vidéo.
+        </video>
+      </div>
+    </div>
+  </div>
+</section>

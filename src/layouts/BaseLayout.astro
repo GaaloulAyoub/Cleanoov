@@ -1,0 +1,25 @@
+---
+// src/layouts/BaseLayout.astro
+const { title = 'Cleanoov', description = 'Cleanoov — Nettoyage intelligent des panneaux solaires. Maximisez votre production d\'énergie.' } = Astro.props;
+---
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://cleanoov.com" />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="min-h-screen bg-white text-black antialiased">
+    <slot name="header" />
+    <main class="min-h-[60vh]">
+      <slot />
+    </main>
+    <slot name="footer" />
+  </body>
+</html>

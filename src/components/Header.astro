@@ -1,0 +1,25 @@
+---
+// src/components/Header.astro
+---
+<header class="w-full bg-white/90 backdrop-blur-md sticky top-0 z-40 shadow-sm">
+    <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/logo.png" alt="Cleanoov logo" class="h-10 w-auto" />
+        <span class="text-lg font-semibold">Cleanoov</span>
+      </a>
+  
+      <nav aria-label="Navigation principale" class="hidden md:flex gap-6 items-center">
+        <a href="#solution" class="text-sm hover:underline">Notre Solution</a>
+        <a href="#services" class="text-sm hover:underline">Services</a>
+        <a href="#zone" class="text-sm hover:underline">Zone d'intervention</a>
+        <a href="#about" class="text-sm hover:underline">À propos</a>
+        <a href="#contact" class="text-sm font-medium text-white bg-green-600 hover:bg-green-700 px-4 py-2 rounded">Contact</a>
+      </nav>
+  
+      <!-- mobile menu button (progressive) -->
+      <div class="md:hidden">
+        <a href="#contact" class="text-sm font-medium text-white bg-green-600 px-3 py-2 rounded">Contact</a>
+      </div>
+    </div>
+  </header>
+  

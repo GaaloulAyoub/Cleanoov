@@ -1,0 +1,17 @@
+---
+// src/components/CTABar.astro
+const googleFormUrl = 'https://forms.gle/TON_LIEN_GOOGLE'; // <-- remplace
+---
+<section class="bg-black text-white">
+  <div class="max-w-6xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between gap-4">
+    <div>
+      <strong>Ne perdez plus un watt.</strong>
+      <div class="text-sm text-gray-300">Demandez votre devis gratuit dès maintenant.</div>
+    </div>
+
+    <div class="flex gap-3">
+      <a href={googleFormUrl} target="_blank" rel="noopener" class="bg-green-600 hover:bg-green-700 px-4 py-2 rounded font-semibold">Demander un devis</a>
+      <a href="#contact" class="px-4 py-2 border border-white/20 rounded">Contact</a>
+    </div>
+  </div>
+</section>
