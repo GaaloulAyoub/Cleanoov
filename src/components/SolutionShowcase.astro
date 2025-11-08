@@ -1,0 +1,120 @@
+---
+// src/components/SolutionShowcase.astro
+// Définit les solutions (titres, descriptions, images)
+const solutions = [
+  {
+    id: 1,
+    title: "Nettoyage Intelligent",
+    description:
+      "Notre technologie nettoie vos panneaux solaires sans les abîmer, avec des produits biodégradables et une méthode douce.",
+    image: "/solution1.png",
+  },
+  {
+    id: 2,
+    title: "Protection Durable",
+    description:
+      "Une couche protectrice anti-poussière et anti-calcaire qui prolonge la durée de vie de vos installations photovoltaïques.",
+    image: "/solution2.png",
+  },
+  {
+    id: 3,
+    title: "Diagnostic de Performance",
+    description:
+      "Nos experts analysent la performance de vos panneaux et identifient les pertes de rendement avant intervention.",
+    image: "/solution3.png",
+  },
+];
+---
+<section class="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+  <!-- Partie gauche : Image dynamique -->
+  <div class="relative">
+    <img
+      id="solutionImage"
+      src={solutions[0].image}
+      alt={solutions[0].title}
+      class="rounded-lg shadow-lg w-full h-auto transition-opacity duration-300"
+      aria-live="polite"
+    />
+  </div>
+
+  <!-- Partie droite : texte + boutons -->
+  <div class="space-y-6">
+    <h2 class="text-3xl font-bold text-gray-900">Nos Solutions Innovantes</h2>
+    <p class="text-gray-600 text-base leading-relaxed">
+      Cleanoov offre des solutions complètes pour redonner à vos panneaux leur performance maximale.
+      Choisissez une solution ci-dessous pour en savoir plus.
+    </p>
+
+    <div id="solutionsList" class="space-y-4">
+      <!-- Génération des boutons -->
+      {solutions.map((s, i) => (
+        /* on génère des boutons statiques avec data-index pour le JS */
+        <button
+          type="button"
+          class={`solution-btn w-full text-left border rounded-lg px-5 py-4 transition-all ${
+            i === 0 ? "border-green-600 bg-green-50" : "border-gray-200 hover:border-green-400 hover:bg-green-50"
+          }`}
+          data-index={i}
+          aria-pressed={i === 0 ? "true" : "false"}
+        >
+          <h3 class="text-lg font-semibold text-gray-900">{s.title}</h3>
+          <p class="text-sm text-gray-600 mt-1">{s.description}</p>
+        </button>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Script client : vanilla JS pour gérer le clic et le swap d'image -->
+<script type="module">
+  // Exécute quand DOM chargé
+  const imgEl = document.getElementById('solutionImage');
+  const buttons = Array.from(document.querySelectorAll('.solution-btn'));
+
+  // sécurité : si éléments manquants, on quitte silencieusement
+  if (!imgEl || buttons.length === 0) {
+    // nothing to do
+  } else {
+    buttons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        const index = Number(btn.getAttribute('data-index'));
+        // safety check index
+        if (Number.isNaN(index)) return;
+
+        // récupérer la nouvelle image à partir du dataset côté serveur (Astro a déjà rendu 'solutions')
+        // pour simplifier, on peut construire un tableau de sources directement ici
+        const images = [
+          "/solution1.png",
+          "/solution2.png",
+          "/solution3.png"
+        ];
+
+        const titles = [
+          "Nettoyage Intelligent",
+          "Protection Durable",
+          "Diagnostic de Performance"
+        ];
+
+        const newSrc = images[index];
+        const newAlt = titles[index] || 'Solution Cleanoov';
+
+        // Animation simple : fade out -> change src -> fade in
+        imgEl.style.opacity = '0';
+        // attendre la fin du fade out (durée en ms : doit correspondre à la classe CSS transition)
+        setTimeout(() => {
+          imgEl.src = newSrc;
+          imgEl.alt = newAlt;
+          imgEl.style.opacity = '1';
+        }, 200); // 200ms correspond à transition-opacity duration-300; ajuste si besoin
+
+        // Gérer l'état visuel des boutons (aria + classes)
+        buttons.forEach(b => {
+          b.classList.remove('border-green-600', 'bg-green-50');
+          b.setAttribute('aria-pressed', 'false');
+        });
+        btn.classList.add('border-green-600', 'bg-green-50');
+        btn.setAttribute('aria-pressed', 'true');
+      });
+    });
+  }
+</script>
